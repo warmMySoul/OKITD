@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 from k_means import kmeans
 
 # исходные данные
@@ -22,4 +23,8 @@ ans = kmeans(2, X)
 print(ans)
 plt.plot(X[:,0], X[:,1], 'bx', ans[:,0], ans[:,1], 'r*', markersize=20)
 plt.grid()
+plt.legend()
+ax = plt.subplots()
+ax.xaxis.set_major_locator(ticker.MultipleLocator(2))
+ax.yaxis.set_major_locator(ticker.MultipleLocator(50))
 plt.show()
