@@ -44,12 +44,8 @@ data = np.loadtxt('./test.txt', dtype=np.int32)
 #импорт данных из файла и указываем что там целые числа
 print(data)
 
-#загрузка одномерных данных 
-data = scipy.io.loadmat('./1D/var1.mat')
-#ищем(узнаем) ключи
-data.keys()
-#извлекаем данные
-data=data['n']
+#загрузка одномерных данных, ищем(узнаем) ключи, извлекаем данные
+data = scipy.io.loadmat('./1D/var1.mat').keys()['n']
 
 dataMax=np.max(data)
 #расчет максимального
@@ -76,6 +72,9 @@ dataStd=np.std(data)
 print(dataStd)
 
 plt.plot(data)
+plt.title("График") # заголовок
+plt.xlabel("x") # ось абсцисс
+plt.ylabel("y") # ось ординат
 #график
 plt.show()
 
@@ -83,6 +82,8 @@ plt.show()
 mean = np.mean(data) * np.ones(len(data))
 var = np.var(data) * np.ones(len(data))
 plt.plot(data, 'b-', mean, 'r-', mean-var, 'g--', mean+var, 'g--')
+plt.xlabel("x") # ось абсцисс
+plt.ylabel("y") # ось ординат
 plt.grid()
 plt.show()
 
@@ -99,9 +100,7 @@ plt.plot(cor)
 plt.show()
 
 
-datadata = scipy.io.loadmat('./ND/var1.mat')
-datadata.keys()
-datadata=datadata['mn']
+datadata = scipy.io.loadmat('./ND/var1.mat').keys()['mn']
 
 n = datadata.shape[1]
 corr_matrix = np.zeros((n,n))
@@ -116,5 +115,7 @@ np.set_printoptions(precision=2)
 print(corr_matrix)
 
 plt.plot(datadata[:, 2], datadata[:, 5], 'b.')
+plt.xlabel("x") # ось абсцисс
+plt.ylabel("y") # ось ординат
 plt.grid()
 plt.show()
