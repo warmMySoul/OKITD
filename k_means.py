@@ -1,9 +1,10 @@
 import numpy as np
 
-def dist(A, B, N):
+def dist(A, B):
     diff = (A - B)**2
     return np.sqrt(sum(diff.ravel())) 
 
+# Нахождение дистанции 
 def xemmingdist(A, B):
     result = (A - B)
     return np.sum(abs(result.ravel()))
@@ -13,10 +14,7 @@ def class_of_each_point(X, centers):
   k = len(centers)
 
   distances = np.zeros((m, k))
-  for i in range(m):
-    for j in range(k):
-      #distances[i, j] = dist(centers[j], X[i], np.ndim(X))
-       distances[i, j] = xemmingdist(centers[j], X[i])
+  distances[i, j] = [[for i in range(m)] for j in range(k)]
   return np.argmin(distances, axis=1)
 
 
@@ -28,7 +26,7 @@ def clasterize(k,X):
     centers = np.random.random((k,n))
     curr_iteration = class_of_each_point(X, centers)
     
-    while (curr_iteration!=prev_iteration):
+    while curr_iteration!=prev_iteration :
 
         prev_iteration = curr_iteration
 
