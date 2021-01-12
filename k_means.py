@@ -4,7 +4,7 @@ def dist(A, B):
     diff = (A - B)**2
     return np.sqrt(sum(diff.ravel())) 
 
-# Нахождение Хеммингова расстояния при необходимости
+# Нахождение Хеммингова расстояния 
 def xemmingdist(A, B):
     result = (A - B)
     return np.sum(abs(result.ravel()))
