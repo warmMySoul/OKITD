@@ -30,9 +30,7 @@ def HighestSumArray(arrayAmount, itemAmmount):
 
 # Евклидово расстояние.
 def EuclidDistance(A, B):
-    diff = (A - B)**2
-
-    return np.sqrt(sum(diff.ravel()))
+    return MinkovDistance(A, B, 2, 2)
 
 # Нахождение расстояния.
 def MinkovDistance(A, B, p, r):
