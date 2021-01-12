@@ -58,9 +58,9 @@ print(dataStd)
 
 plt.plot(data)
 
-plt.title("График") # заголовок
-plt.xlabel("x") # ось абсцисс
-plt.ylabel("y") # ось ординат
+plt.title("График 1") # заголовок
+plt.xlabel("Ось X") # ось абсцисс
+plt.ylabel("Ось Y") # ось ординат
 
 plt.show()
 
@@ -68,17 +68,24 @@ mean = np.mean(data) * np.ones(len(data))
 var = np.var(data) * np.ones(len(data))
 plt.plot(data, 'b-', mean, 'r-', mean-var, 'g--', mean+var, 'g--')
 plt.grid()
-plt.xlabel("x") # ось абсцисс
-plt.ylabel("y") # ось ординат
+plt.xlabel("Ось X") # ось абсцисс
+plt.ylabel("Ось Y") # ось ординат
+plt.title("График 2") # заголовок
 plt.show()
 
 plt.hist(data, bins=20)
 plt.grid()
+plt.xlabel("Ось X") # ось абсцисс
+plt.ylabel("Ось Y") # ось ординат
+plt.title("График 2") # заголовок
 plt.show()
 
 data = np.ravel(data)
 cor = autocorrelate(data)
 plt.plot(cor)
+plt.xlabel("Ось X") # ось абсцисс
+plt.ylabel("Ось Y") # ось ординат
+plt.title("График 2") # заголовок
 plt.show()
 
 
@@ -97,7 +104,8 @@ np.set_printoptions(precision=2)
 print(corr_matrix)
 
 plt.plot(datadata[:, 2], datadata[:, 5], 'b.')
-plt.xlabel("x") # ось абсцисс
-plt.ylabel("y") # ось ординат
+plt.xlabel("Ось X") # ось абсцисс
+plt.ylabel("Ось Y") # ось ординат
+plt.title("График 3") # заголовок
 plt.grid()
 plt.show()
