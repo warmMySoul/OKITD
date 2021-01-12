@@ -1,10 +1,9 @@
 import numpy as np
 
-def dist(A, B):
+def dist(A, B, N):
     diff = (A - B)**2
     return np.sqrt(sum(diff.ravel())) 
 
-# Нахождение дистанции 
 def xemmingdist(A, B):
     result = (A - B)
     return np.sum(abs(result.ravel()))
@@ -14,30 +13,32 @@ def class_of_each_point(X, centers):
   k = len(centers)
 
   distances = np.zeros((m, k))
-  distances[i, j] = [[for i in range(m)] for j in range(k)]
+  for i in range(m):
+    for j in range(k):
+      #distances[i, j] = dist(centers[j], X[i], np.ndim(X))
+       distances[i, j] = xemmingdist(centers[j], X[i])
   return np.argmin(distances, axis=1)
 
 
-def clasterize(k,X):
+def clasterize(k,X, centers):
     m = X.shape[0]
     n = X.shape[1]
 
-    curr_iteration = prev_iteration = np.zeros(m)
-    centers = np.random.random((k,n))
-    curr_iteration = class_of_each_point(X, centers)
-    
-    while curr_iteration!=prev_iteration :
+    _centers = centers
 
-        prev_iteration = curr_iteration
+    for i in range(k):
+        sub_X = X[curr_iteration == i,:]
+        if len(sub_X) > 0:
+            _centers[i,:] = np.mean(sub_X, axis=0)
 
-        for i in range(k):
-            sub_X = X[curr_iteration == i,:]
-            if len(sub_X) > 0:
-                centers[i,:] = np.mean(sub_X, axis=0)
+    curr_iteration = class_of_each_point(X, _centers)
 
-        curr_iteration = class_of_each_point(X, centers)
-    
-    return centers
+    a = 0
+    for i in range(len(curr_iteration)):
+        a += dist(X[i], _centers[curr_iteration[i]])**2
+    a = np.mean(a)
+
+    return centers, a
 
 def kmeans(k, X):
   while True:
@@ -52,3 +53,12 @@ def check(X, centers):
             if (np.min(X[:,j], axis=0)>centers[i,j]) or (np.max(X[:,j],axis=0)<centers[i,j]):
                 return False
     return True
+
+def start(times, k, X):
+    centres = np.zeros((times + 1, 2))
+    centers[i] = np.random.random((k,X.shape[1]))
+    mistake = np.zeroes((times, 1))
+    for i in range( times ):
+        centres[i + 1], mistake[i] = clasterize(k, X, centres[i])
+    return centres[np.argmin(mistake)]
+
