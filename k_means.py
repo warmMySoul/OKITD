@@ -1,9 +1,10 @@
 import numpy as np
 
-def dist(A, B, N):
+def dist(A, B):
     diff = (A - B)**2
     return np.sqrt(sum(diff.ravel())) 
 
+# Нахождение Хеммингова расстояния при необходимости
 def xemmingdist(A, B):
     result = (A - B)
     return np.sum(abs(result.ravel()))
@@ -13,10 +14,7 @@ def class_of_each_point(X, centers):
   k = len(centers)
 
   distances = np.zeros((m, k))
-  for i in range(m):
-    for j in range(k):
-      #distances[i, j] = dist(centers[j], X[i], np.ndim(X))
-       distances[i, j] = xemmingdist(centers[j], X[i])
+  distances[i, j] = [xemmingdist(centers[j], X[i]) for i in range(m) [for j in range(k)]]
   return np.argmin(distances, axis=1)
 
 
@@ -54,6 +52,7 @@ def check(X, centers):
                 return False
     return True
 
+# Функция по заданию комментария
 def start(times, k, X):
     centres = np.zeros((times + 1, 2))
     centers[i] = np.random.random((k,X.shape[1]))
