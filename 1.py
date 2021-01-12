@@ -36,7 +36,7 @@ print(data)
 data = np.loadtxt('./test.txt', dtype=np.int32)
 print(data)
 
-data = scipy.io.loadmat('./1D/var1.mat').keys()['n']
+data = scipy.io.loadmat('./1D/var1.mat')['n']
 
 dataMax=np.max(data)
 print(dataMax)
@@ -58,9 +58,9 @@ print(dataStd)
 
 plt.plot(data)
 
-plt.title("График 1") # заголовок
-plt.xlabel("Ось X") # ось абсцисс
-plt.ylabel("Ось Y") # ось ординат
+plt.title("График одномерной слуцчайной величины") # заголовок
+plt.xlabel("Значение случйаного явления") # ось абсцисс
+plt.ylabel("Значение величины") # ось ординат
 
 plt.show()
 
@@ -68,28 +68,28 @@ mean = np.mean(data) * np.ones(len(data))
 var = np.var(data) * np.ones(len(data))
 plt.plot(data, 'b-', mean, 'r-', mean-var, 'g--', mean+var, 'g--')
 plt.grid()
-plt.xlabel("Ось X") # ось абсцисс
-plt.ylabel("Ось Y") # ось ординат
-plt.title("График 2") # заголовок
+plt.xlabel("Значение случйаного явления") # ось абсцисс
+plt.ylabel("Значение величины") # ось ординат
+plt.title("График одномерной слуцчайной величины с указанием линий среднего и дисперсии") # заголовок
 plt.show()
 
 plt.hist(data, bins=20)
 plt.grid()
-plt.xlabel("Ось X") # ось абсцисс
-plt.ylabel("Ось Y") # ось ординат
-plt.title("График 2") # заголовок
+plt.xlabel("Значение случайного явления") # ось абсцисс
+plt.ylabel("Значение функции распределения") # ось ординат
+plt.title("Закон распределения случайной величины") # заголовок
 plt.show()
 
 data = np.ravel(data)
 cor = autocorrelate(data)
 plt.plot(cor)
-plt.xlabel("Ось X") # ось абсцисс
-plt.ylabel("Ось Y") # ось ординат
-plt.title("График 2") # заголовок
+plt.xlabel("Значение случйаного явления") # ось абсцисс
+plt.ylabel("Значение коэффициентиа корелляции") # ось ординат
+plt.title("График автокорреляции одномерной случайной величины") # заголовок
 plt.show()
 
 
-datadata = scipy.io.loadmat('./ND/var1.mat').keys()['mn']
+datadata = scipy.io.loadmat('./ND/var1.mat')['mn']
 
 n = datadata.shape[1]
 corr_matrix = np.zeros((n,n))
@@ -104,8 +104,8 @@ np.set_printoptions(precision=2)
 print(corr_matrix)
 
 plt.plot(datadata[:, 2], datadata[:, 5], 'b.')
-plt.xlabel("Ось X") # ось абсцисс
-plt.ylabel("Ось Y") # ось ординат
-plt.title("График 3") # заголовок
+plt.xlabel("Значение случйаного явления") # ось абсцисс
+plt.ylabel("Значение коэффициентиа корелляции") # ось ординат
+plt.title("Точечный график автокорелляции двух столбцов") # заголовок
 plt.grid()
 plt.show()
